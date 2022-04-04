@@ -38,7 +38,17 @@ class Game:
         bool
             True if movement is valid, False otherwise
         """
-        pass
+        q1, r1, s1 = start_coords
+        q2, r2, s2 = end_coords
+
+        conditions = [
+            board.get_state(end_coords) == 0,
+            abs(q1 - q2) < 3,
+            abs(r1 - r2) < 3,
+            abs(s1 - s2) < 3
+        ]
+
+        return all(conditions)
 
 
     def is_jump(self, start_coords, end_coords):
