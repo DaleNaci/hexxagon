@@ -64,22 +64,23 @@ def draw_board(t, game):
 
 
 def draw_pieces(wn, game):
-    with open("./resources/coordinate_data/hex_coords.txt") as f:
+    with open("./resources/coordinate_data/map1.txt") as f:
         for line in f.readlines():
             q, r, s, x, y = line.split()
 
-            a = turtle.Turtle()
-            a.up()
-            a.shape("circle")
-            a.goto(float(x), float(y))
-
             key = f"{q}, {r}, {s}"
             tile = game.board.board[key]
-            if tile.state == 0:
-                a.color("white")
-            elif tile.state == 1:
-                a.color("red")
-            else:
+            if tile.state == 2:
+                a = turtle.Turtle()
+                a.up()
+                a.shape("circle")
+                a.goto(float(x), float(y))
                 a.color("blue")
+            elif tile.state == 1:
+                a = turtle.Turtle()
+                a.up()
+                a.shape("circle")
+                a.goto(float(x), float(y))
+                a.color("red")
 
     wn.update()

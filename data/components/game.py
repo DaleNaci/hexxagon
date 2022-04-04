@@ -19,6 +19,7 @@ class Game:
     def __init__(self):
         self.board = Board()
         self.current_player = 1
+        self.prev_move = {}
 
 
     def check_move(self, start_coords, end_coords, player):
@@ -72,6 +73,9 @@ class Game:
         """
         if not self.check_move(start_coords, end_coords, self.current_player):
             raise Exception("Invalid move!")
+
+        self.prev_move["start_coords"] = start_coords
+        self.prev_move["end_coords"] = end_coords
 
         start_tile = self.board.get_tile(start_coords)
         end_tile = self.board.get_tile(end_coords)

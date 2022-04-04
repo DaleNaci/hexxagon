@@ -4,8 +4,6 @@ from .tile import Tile
 class Board:
     """A class used to represent a game Board
 
-    This is a Singleton class.
-
     Attributes
     ----------
     board : dict
@@ -15,12 +13,6 @@ class Board:
 
     def __init__(self):
         self.board = {}
-
-
-    def __new__(cls):
-        if not hasattr(cls, "instance"):
-            cls.instance = super(Board, cls).__new__(cls)
-        return cls.instance
 
 
     def __get_key(self, coords):
@@ -150,4 +142,4 @@ class Board:
             else:
                 board_is_full = False
 
-        return any(p1_lost, p2_lost, board_is_full)
+        return any([p1_lost, p2_lost, board_is_full])
