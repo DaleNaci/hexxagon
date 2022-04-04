@@ -21,7 +21,7 @@ class Game:
         self.current_player = 1
 
 
-    def check_move(self, start_coords, end_coords):
+    def check_move(self, start_coords, end_coords, player):
         """A method to check if a movement between two coordinates is a
         valid Hexxagon move
 
@@ -41,8 +41,12 @@ class Game:
         q1, r1, s1 = start_coords
         q2, r2, s2 = end_coords
 
+        start_state = self.board.get_state(start_coords)
+        end_state = self.board.get_state(end_coords)
+
         conditions = [
-            self.board.get_state(end_coords) == 0,
+            start_state == player,
+            end_state == 0,
             abs(q1 - q2) < 3,
             abs(r1 - r2) < 3,
             abs(s1 - s2) < 3
@@ -66,6 +70,9 @@ class Game:
             3 ints that represent q, r, and s coordinates. This is the
             move's ending point
         """
+        if not self.check_move(start_coords, end_coords, self.current_player):
+            raise Exception("Invalid move!")
+
         start_tile = self.board.get_tile(start_coords)
         end_tile = self.board.get_tile(end_coords)
 
@@ -74,10 +81,15 @@ class Game:
         if is_jump(start_coords, end_coords):
             start_tile.state = 0
 
-        for coords in get_surrounding_coords(end_coords):
+        for coords in get_surrounding_coords(end_coords, self.board):
             tile = self.board.get_tile(coords)
 
             if tile.state != 0:
-                tile.state = current_player
+                tile.state = self.current_player
 
-        current_player = 1 if current_player==2 else 2
+        self.current_player = 1 if self.current_player==2 else 2
+
+
+    def get_state(self, coords):
+        """Returns state of Tile at coords"""
+        return self.board.get_state(coords)

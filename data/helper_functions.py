@@ -1,6 +1,3 @@
-from .components.board import Board
-
-
 def is_jump(start_coords, end_coords):
     """A method to check if a movement between two coordinates is a
     jump
@@ -30,7 +27,7 @@ def is_jump(start_coords, end_coords):
     return any(conditions)
 
 
-def get_surrounding_coords(coords):
+def get_surrounding_coords(coords, board):
     """A method to obtain coordinates surrounding a given set of
     coordinates
 
@@ -48,7 +45,6 @@ def get_surrounding_coords(coords):
         represent q, r, and s coordinates
     """
     surrounding_coords = []
-    board = Board()
 
     modifications = [
         [1, 0, -1],
