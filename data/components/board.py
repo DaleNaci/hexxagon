@@ -7,6 +7,12 @@ class Board:
         create_board()
 
 
+    def __new__(cls):
+        if not hasattr(cls, "instance"):
+            cls.instance = super(Board, cls).__new__(cls)
+        return cls.instance
+
+
     def __get_key(self, coords):
         return f"{coords[0]}, {coords[1]}, {coords[2]}"
 
@@ -23,3 +29,13 @@ class Board:
     def get_state(self, coords):
         key = self.__get_key(coords)
         return self.board[key].state
+
+
+    def get_tile(self, coords):
+        key = self.__get_key(coords)
+        return self.board[key]
+
+
+    def is_tile(self, coords):
+        key = self.__get_key(coords)
+        return key in self.board.keys()
