@@ -100,3 +100,54 @@ class Board:
         """
         key = self.__get_key(coords)
         return key in self.board.keys()
+
+
+    def evaluate(self):
+        """Evaluates the current position of the board
+
+        The evaluation is dependent on the gems on boards, where every
+        Player 1 gem is +1 towards the evaluation score, and vice versa
+        for Player 2.
+
+        Returns
+        -------
+        int
+            Evaluation of the game
+        """
+        evaluation = 0
+
+        for t in self.board.values():
+            if t.state == 1:
+                evaluation += 1
+            elif t.state == 2:
+                evaluation -= 1
+
+        return evaluation
+
+
+    def is_game_over(self):
+        """Checks if the game is finished
+
+        One of the two must be true:
+            1) A player has 0 gems on the board
+            2) The board is completely full with gems
+
+        Returns
+        -------
+        boolean
+            True if at least one of the conditions above is met, False
+            otherwise
+        """
+        p1_lost = True
+        p2_lost = True
+        board_is_full = True
+
+        for t in self.board.values():
+            if t.state == 1:
+                p1_lost = False
+            elif t.state == 2:
+                p2_lost = False
+            else:
+                board_is_full = False
+
+        return any(p1_lost, p2_lost, board_is_full)
