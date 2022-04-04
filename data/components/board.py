@@ -12,14 +12,14 @@ class Board:
 
 
     def create_board(self):
-        for q in range(-3, 4):
-            for r in range(-3, 4):
-                for s in range(-3, 4):
-                    if abs(q) + abs(r) + abs(s) <= 6:
+        for q in range(-4, 5):
+            for r in range(-4, 5):
+                for s in range(-4, 5):
+                    if abs(q) + abs(r) + abs(s) <= 8:
                         key = self.__get_key([q, r, s])
                         self.board[key] = Tile([q, r, s])
 
 
-    def get_state(self, q, r, s):
-        key = self.__get_key([q, r, s])
+    def get_state(self, coords):
+        key = self.__get_key(coords)
         return self.board[key].state
