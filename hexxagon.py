@@ -3,6 +3,8 @@ from data.main import main
 
 if __name__ == "__main__":
     """
+    Scenarios
+
     1 -> Minimax vs. Minimax
     2 -> Minimax vs. Player
     3 -> Minimax vs. Randomizer

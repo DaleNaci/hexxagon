@@ -8,6 +8,17 @@ from .bots.randomizer import Randomizer
 
 
 def main(scenario=1):
+    """This is the main function
+
+    It contains every single game loop and puts together all of the
+    different components.
+
+    Parameters
+    ----------
+    scenario : int
+        Every single number will run the game in a different way
+    """
+
     game = Game()
     game.board.create_board()
 
@@ -20,7 +31,8 @@ def main(scenario=1):
 
     wn.update()
 
-    if scenario == 1: # MINIMAX VS. MINIMAX
+    # MINIMAX VS. MINIMAX
+    if scenario == 1:
         p1 = Ai(1, 3)
         p2 = Ai(2, 3)
 
@@ -50,7 +62,8 @@ def main(scenario=1):
             draw_pieces(wn, game)
             wn.update()
 
-    elif scenario == 2: # MINIMAX VS PLAYER
+    # MINIMAX VS PLAYER
+    elif scenario == 2:
         p1 = Ai(1, 1)
 
         while True:
@@ -78,7 +91,8 @@ def main(scenario=1):
             draw_pieces(wn, game)
             wn.update()
 
-    elif scenario == 3: # MINIMAX vs. RANDOM
+    # MINIMAX vs. RANDOM
+    elif scenario == 3:
         p1 = Ai(1, 3)
         p2 = Randomizer(2)
 
@@ -106,7 +120,8 @@ def main(scenario=1):
             draw_pieces(wn, game)
             wn.update()
 
-    elif scenario == 4: # MINIMAX vs. MINIMAX Pre-determined board
+    # MINIMAX vs. MINIMAX Pre-determined board
+    elif scenario == 4:
         game.make_turn([4, -4, 0], [3, -4, 1])
         game.make_turn([4, 0, -4], [4, -1, -3])
 

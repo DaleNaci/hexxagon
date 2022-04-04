@@ -14,6 +14,9 @@ class Game:
         The Board that holds all of the Tile objects
     current_player : int
         Shows whose turn it is, eg. Player 1's turn -> current_player=1
+    prev_move : dict
+        Holds the previous start/end coordinates under the
+        "start_coords" and "end_coords" keys
     """
 
     def __init__(self):
