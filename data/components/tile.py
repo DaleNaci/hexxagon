@@ -43,8 +43,8 @@ class Tile:
         info : str
             A multi-line string with information about a Tile instance.
         """
-        info = f"q: {self.q}" \
-                + f"r: {self.r}" \
-                + f"s: {self.s}" \
+        info = f"q: {self.q}\n" \
+                + f"r: {self.r}\n" \
+                + f"s: {self.s}\n" \
                 + f"state: {self.state}"
         return info
