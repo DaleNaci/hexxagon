@@ -16,7 +16,7 @@ class Ai:
         start_coords = None
         end_coords = None
         max_eval = -9999
-        
+
         for child in self.child_games(game, self.player_num):
             eval = self.minimax(child, self.initial_depth-1, False)
 
