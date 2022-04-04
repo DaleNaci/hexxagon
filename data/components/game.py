@@ -33,7 +33,6 @@ class Game:
         end_coords : list
             3 ints that represent q, r, and s coordinates. This is the
             move's ending point
-
         Returns
         -------
         bool

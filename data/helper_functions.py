@@ -13,7 +13,6 @@ def is_jump(start_coords, end_coords):
     end_coords : list
         3 ints that represent q, r, and s coordinates. This is the
         move's ending point
-
     Returns
     -------
     bool
@@ -32,6 +31,22 @@ def is_jump(start_coords, end_coords):
 
 
 def get_surrounding_coords(coords):
+    """A method to obtain coordinates surrounding a given set of
+    coordinates
+
+    The coordinates returned are all valid Tile locations.
+
+    Parameters
+    ----------
+    coords : list
+        3 ints that represent q, r, and s coordinates. This is the set
+        of coordinates that the function will look around
+    Returns
+    -------
+    list
+        List of lists, where each inner list contains 3 ints that
+        represent q, r, and s coordinates
+    """
     surrounding_coords = []
     board = Board()
 
