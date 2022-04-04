@@ -35,7 +35,7 @@ def draw_board(t, game):
     t.speed(0)
 
     t.up()
-    t.goto(-30, 350)
+    t.goto(-30, 365)
     t.down()
 
     row_of_hexes(t, 5)
@@ -65,6 +65,27 @@ def draw_board(t, game):
     row_of_hexes(t, 5)
 
 
+def draw_pieces(wn, game):
+    with open("./resources/coordinate_data/hex_coords.txt") as f:
+        for line in f.readlines():
+            q, r, s, x, y = line.split()
+
+            a = turtle.Turtle()
+            a.up()
+            a.shape("circle")
+            a.goto(float(x), float(y))
+
+            key = f"{q}, {r}, {s}"
+            tile = game.board.board[key]
+            if tile.state == 0:
+                a.color("white")
+            elif tile.state == 1:
+                a.color("red")
+            else:
+                a.color("blue")
+
+    wn.update()
+
 
 def main():
     game = Game()
@@ -77,8 +98,9 @@ def main():
 
     draw_board(t, game)
 
-    wn.update()
+    draw_pieces(wn, game)
 
+    wn.update()
 
     while True:
         print(f"Player {game.current_player}:")
@@ -86,8 +108,15 @@ def main():
         start_coords = list(map(int, input("\tStarting Coords: ").split()))
         end_coords = list(map(int, input("\tEnding Coords: ").split()))
 
+        if game.current_player == 2:
+            print()
+
         if game.check_move(start_coords, end_coords, game.current_player):
             game.make_turn(start_coords, end_coords)
+
+            draw_pieces(wn, game)
+
+            wn.update()
         else:
             print("Invalid move! Try again!\n")
 
