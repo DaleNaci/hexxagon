@@ -15,7 +15,7 @@ class Board:
 
     def __init__(self):
         self.board = {}
-        create_board()
+        self.create_board()
 
 
     def __new__(cls):
@@ -38,13 +38,21 @@ class Board:
 
 
     def create_board(self):
-        """Populates the self.board attribute with Tiles"""
+        """Populates the self.board attribute with starting Tiles"""
         for q in range(-4, 5):
             for r in range(-4, 5):
                 for s in range(-4, 5):
                     if abs(q) + abs(r) + abs(s) <= 8:
                         key = self.__get_key([q, r, s])
                         self.board[key] = Tile([q, r, s])
+
+        self.board["0, -3, 3"].state = 1
+        self.board["3, 0, -3"].state = 1
+        self.board["-3, 3, 0"].state = 1
+
+        self.board["3, -3, 0"].state = 2
+        self.board["0, 3, -3"].state = 2
+        self.board["-3, 0, 3"].state = 2
 
 
     def get_state(self, coords):
