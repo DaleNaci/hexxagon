@@ -10,7 +10,7 @@ if __name__ == "__main__":
     3 -> Minimax vs. Randomizer
     4 -> Minimax vs. Minimax on pre-determined board
     """
-    main(4)
+    main(3)
 
 
 """
