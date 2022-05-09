@@ -20,7 +20,7 @@ class Ai:
     oppo_num : int
         The opposing player's number
     """
-    def __init__(self, player_num, initial_depth=3):
+    def __init__(self, player_num, initial_depth=4):
         self.initial_depth = initial_depth
         self.player_num = player_num
 
@@ -47,7 +47,7 @@ class Ai:
         max_eval = -9999
 
         for child in self.child_games(game, self.player_num):
-            eval = self.minimax(child, self.initial_depth-1, False)
+            eval = self.minimax(child, self.initial_depth-1, False, -9999, 9999)
 
             if eval > max_eval:
                 max_eval = eval
@@ -58,7 +58,7 @@ class Ai:
         return (max_eval, start_coords, end_coords)
 
 
-    def minimax(self, game, depth, maximizing_player):
+    def minimax(self, game, depth, maximizing_player, alpha, beta):
         """Recursive minimax algorithm for evaluating the best move
 
         Parameters
@@ -84,10 +84,16 @@ class Ai:
             max_eval = -9999
 
             for child in self.child_games(game, self.player_num):
-                eval = self.minimax(child, depth-1, False)
+                eval = self.minimax(child, depth-1, False, alpha, beta)
 
                 if max_eval < eval:
                     max_eval = eval
+
+                if alpha < max_eval:
+                    alpha = max_eval
+
+                if beta <= alpha:
+                    break
 
             return max_eval
 
@@ -95,10 +101,16 @@ class Ai:
             min_eval = 9999
 
             for child in self.child_games(game, self.oppo_num):
-                eval = self.minimax(child, depth-1, True)
+                eval = self.minimax(child, depth-1, True, alpha, beta)
 
                 if min_eval > eval:
                     min_eval = eval
+
+                if beta > min_eval:
+                    beta = min_eval
+
+                if beta <= alpha:
+                    break
 
             return min_eval
 

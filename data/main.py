@@ -26,6 +26,8 @@ def main(scenario=1):
     wn.tracer(0)
 
     t = turtle.Turtle()
+    t.hideturtle()
+
     draw_board(t, game)
     draw_pieces(wn, game)
 
@@ -33,7 +35,7 @@ def main(scenario=1):
 
     # MINIMAX VS. MINIMAX
     if scenario == 1:
-        p1 = Ai(1, 3)
+        p1 = Ai(1, 1)
         p2 = Ai(2, 3)
 
         while True:
