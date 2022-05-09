@@ -81,6 +81,22 @@ def get_surrounding_coords(coords, board):
 
 
 def get_adjacent_coords(coords, board):
+    """A method to obtain coordinates adjacent to a given set of
+    coordinates
+
+    The coordinates returned are all valid Tile locations.
+
+    Parameters
+    ----------
+    coords : list
+        3 ints that represent q, r, and s coordinates. This is the set
+        of coordinates that the function will look around
+    Returns
+    -------
+    list
+        List of lists, where each inner list contains 3 ints that
+        represent q, r, and s coordinates
+    """
     adjacent_coords = []
 
     modifications = [

@@ -103,6 +103,14 @@ class Game:
 
 
     def get_scores(self):
+        """Returns the scores of both players
+
+        Returns
+        -------
+        tuple
+            [0] -> Player 1's score
+            [1] -> Player 2's score
+        """
         p1_score = 0
         p2_score = 0
 
