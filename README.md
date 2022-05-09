@@ -1,2 +1,2 @@
 # hexxagon
-AI Project for CS 370 - Introduction to Artificial Intelligence
+AI Project using Minimax.
