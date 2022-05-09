@@ -82,5 +82,11 @@ def draw_pieces(wn, game):
                 a.shape("circle")
                 a.goto(float(x), float(y))
                 a.color("red")
+            else:
+                a = turtle.Turtle()
+                a.up()
+                a.shape("circle")
+                a.goto(float(x), float(y))
+                a.color("white")
 
     wn.update()

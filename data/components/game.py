@@ -1,5 +1,5 @@
 from .board import Board
-from ..helper_functions import is_jump, get_surrounding_coords
+from ..helper_functions import is_jump, get_adjacent_coords
 
 
 class Game:
@@ -88,7 +88,7 @@ class Game:
         if is_jump(start_coords, end_coords):
             start_tile.state = 0
 
-        for coords in get_surrounding_coords(end_coords, self.board):
+        for coords in get_adjacent_coords(end_coords, self.board):
             tile = self.board.get_tile(coords)
 
             if tile.state != 0:
@@ -100,3 +100,16 @@ class Game:
     def get_state(self, coords):
         """Returns state of Tile at coords"""
         return self.board.get_state(coords)
+
+
+    def get_scores(self):
+        p1_score = 0
+        p2_score = 0
+
+        for t in self.board.board.values():
+            if t.state == 1:
+                p1_score += 1
+            elif t.state == 2:
+                p2_score += 1
+
+        return (p1_score, p2_score)

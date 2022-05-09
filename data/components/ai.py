@@ -20,7 +20,7 @@ class Ai:
     oppo_num : int
         The opposing player's number
     """
-    def __init__(self, player_num, initial_depth=4):
+    def __init__(self, player_num, initial_depth=2):
         self.initial_depth = initial_depth
         self.player_num = player_num
 
@@ -44,16 +44,24 @@ class Ai:
         """
         start_coords = None
         end_coords = None
-        max_eval = -9999
+        max_eval = -9999 if self.player_num==1 else 9999
 
         for child in self.child_games(game, self.player_num):
             eval = self.minimax(child, self.initial_depth-1, False, -9999, 9999)
+            # print(eval)
+            
+            if self.player_num == 1:
+                if eval > max_eval:
+                    max_eval = eval
 
-            if eval > max_eval:
-                max_eval = eval
+                    start_coords = child.prev_move["start_coords"]
+                    end_coords = child.prev_move["end_coords"]
+            else:
+                if eval < max_eval:
+                    max_eval = eval
 
-                start_coords = child.prev_move["start_coords"]
-                end_coords = child.prev_move["end_coords"]
+                    start_coords = child.prev_move["start_coords"]
+                    end_coords = child.prev_move["end_coords"]
 
         return (max_eval, start_coords, end_coords)
 

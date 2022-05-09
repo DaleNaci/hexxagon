@@ -1,3 +1,5 @@
+import random
+
 from .tile import Tile
 
 
@@ -13,6 +15,7 @@ class Board:
 
     def __init__(self):
         self.board = {}
+        self.starting_tiles = ()
 
 
     def __get_key(self, coords):
@@ -37,13 +40,23 @@ class Board:
                         key = self.__get_key([q, r, s])
                         self.board[key] = Tile([q, r, s])
 
-        self.board["4, -4, 0"].state = 1
-        self.board["0, 4, -4"].state = 1
-        self.board["-4, 0, 4"].state = 1
+        all_keys = list(self.board.keys())
 
-        self.board["0, -4, 4"].state = 2
-        self.board["4, 0, -4"].state = 2
-        self.board["-4, 4, 0"].state = 2
+        p1_starting_keys = []
+        p2_starting_keys = []
+
+        for i in range(6):
+            k = random.choice(all_keys)
+            all_keys.remove(k)
+
+            self.board[k].state = i//3 + 1
+
+            if i//3 == 0:
+                p1_starting_keys.append(k)
+            else:
+                p2_starting_keys.append(k)
+
+        self.starting_tiles = (p1_starting_keys, p2_starting_keys)
 
 
     def get_state(self, coords):
