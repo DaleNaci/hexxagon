@@ -8,7 +8,7 @@ class Ai:
     """This class represents the Minimax AI
 
     Pruning still needs to be added. Call find_best_move() to start, do
-    not directyl call the minimax algorithm.
+    not directly call the minimax algorithm.
 
     Attributes
     ----------
